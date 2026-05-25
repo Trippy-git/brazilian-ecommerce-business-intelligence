@@ -4,3 +4,6 @@
 CREATE DATABASE ecommerce_analytics;
 
 USE ecommerce_analytics;
+
+-- Imported customers dataset
+-- Verified sucessful import
