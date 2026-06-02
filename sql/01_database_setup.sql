@@ -41,3 +41,33 @@ JOIN olist_orders_dataset o
     ON c.customer_id = o.customer_id
 GROUP BY c.customer_state
 ORDER BY total_orders DESC;
+
+-- Order status analysis
+
+-- =====================================================
+-- ORDER STATUS ANALYSIS
+-- =====================================================
+
+SELECT
+    order_status,
+    COUNT(*) AS total_orders,
+    ROUND(
+        COUNT(*) * 100.0 /
+        (SELECT COUNT(*) FROM olist_orders_dataset),
+        2
+    ) AS percentage
+FROM olist_orders_dataset
+GROUP BY order_status
+ORDER BY total_orders DESC;
+
+/*
+Business Findings:
+
+1. Delivered orders account for 97.02% of total orders.
+2. Cancellation rate is 0.63%.
+3. Unavailable orders account for 0.61%.
+4. Order fulfillment performance appears highly efficient.
+5. Further investigation required to determine whether
+   unavailable products contribute to cancellations.
+
+*/
