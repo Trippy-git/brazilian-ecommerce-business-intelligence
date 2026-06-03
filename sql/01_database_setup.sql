@@ -42,11 +42,9 @@ JOIN olist_orders_dataset o
 GROUP BY c.customer_state
 ORDER BY total_orders DESC;
 
--- Order status analysis
 
--- =====================================================
 -- ORDER STATUS ANALYSIS
--- =====================================================
+
 
 SELECT
     order_status,
@@ -70,4 +68,30 @@ Business Findings:
 5. Further investigation required to determine whether
    unavailable products contribute to cancellations.
 
+*/
+
+
+-- AVERAGE DELIVERY TIME
+
+SELECT
+    ROUND(
+        AVG(
+            DATEDIFF(
+                order_delivered_customer_date,
+                order_purchase_timestamp
+            )
+        ),
+        2
+    ) AS avg_delivery_days
+FROM olist_orders_dataset
+WHERE order_delivered_customer_date IS NOT NULL;
+
+/*
+Business Findings:
+
+1. Average delivery time is 12.50 days.
+2. Delivery performance appears stable.
+3. Further analysis required to compare
+   actual delivery dates against estimated
+   delivery dates.
 */
