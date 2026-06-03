@@ -32,3 +32,31 @@ Potential Business Actions:
 - Explore retention and loyalty strategies.
 - Analyze high-value repeat customers separately.
 */
+
+-- TOP REPEAT CUSTOMERS
+
+SELECT
+    c.customer_unique_id,
+    COUNT(*) AS total_orders
+FROM olist_orders_dataset o
+JOIN olist_customers_dataset c
+    ON o.customer_id = c.customer_id
+GROUP BY c.customer_unique_id
+ORDER BY total_orders DESC
+LIMIT 10;
+
+/*
+Business Findings:
+
+1. Most customers place only one order.
+2. A small subset of customers exhibits strong repeat-purchase behavior.
+3. The highest-frequency customer placed 17 orders.
+4. Several customers placed between 6 and 9 orders.
+5. These customers may represent loyal or high-value customer segments.
+
+Potential Business Actions:
+
+- Identify characteristics of repeat customers.
+- Develop retention strategies based on high-engagement behavior.
+- Evaluate contribution of repeat customers to revenue.
+*/
