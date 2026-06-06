@@ -102,3 +102,62 @@ Business Implications:
 - Revenue generation is supported by a broad merchant network.
 
 */
+
+-- Seller Segmentation Analysis
+
+WITH seller_revenue AS (
+    SELECT
+        seller_id,
+        SUM(price) AS total_revenue
+    FROM olist_order_items_dataset
+    GROUP BY seller_id
+)
+
+SELECT
+    CASE
+        WHEN total_revenue < 1000 THEN 'Low Revenue Seller'
+        WHEN total_revenue < 10000 THEN 'Medium Revenue Seller'
+        ELSE 'High Revenue Seller'
+    END AS seller_segment,
+
+    COUNT(*) AS total_sellers,
+
+    ROUND(AVG(total_revenue),2) AS avg_revenue,
+
+    ROUND(SUM(total_revenue),2) AS segment_revenue
+
+FROM seller_revenue
+GROUP BY seller_segment;
+
+/*
+SELLER SEGMENTATION ANALYSIS
+
+Business Findings:
+
+1. Marketplace contains 3,095 active sellers.
+
+2. High Revenue Sellers:
+   - 292 sellers (9.4%)
+   - Generated 9.01M revenue
+   - Contributed approximately 66.3% of total seller revenue
+
+3. Medium Revenue Sellers:
+   - 1,136 sellers
+   - Generated 4.04M revenue
+
+4. Low Revenue Sellers:
+   - 1,667 sellers (53.9%)
+   - Generated only 0.55M revenue
+
+Key Insights:
+
+- Revenue is heavily concentrated among a small subset of sellers.
+- Approximately 9.4% of sellers generate over two-thirds of marketplace revenue.
+- Most sellers contribute relatively little revenue.
+
+Business Implications:
+
+- Retention of high-performing sellers is critical.
+- Seller enablement programs may help grow low-revenue merchants.
+- Marketplace growth is strongly influenced by top-performing sellers.
+/*
