@@ -45,3 +45,60 @@ Business Implications:
 - Marketplace dependence on a small number of sellers should be investigated further through revenue concentration analysis.
 
 */
+
+-- Top 10 Seller Revenue Share 
+
+WITH seller_revenue AS (
+    SELECT
+        seller_id,
+        SUM(price) AS revenue
+    FROM olist_order_items_dataset
+    GROUP BY seller_id
+)
+
+SELECT
+    ROUND(
+        SUM(revenue) * 100 /
+        (
+            SELECT SUM(price)
+            FROM olist_order_items_dataset
+        ),
+        2
+    ) AS top_10_revenue_percentage
+FROM (
+    SELECT revenue
+    FROM seller_revenue
+    ORDER BY revenue DESC
+    LIMIT 10
+) top_sellers;
+
+/*
+
+TOP 10 SELLER REVENUE CONCENTRATION ANALYSIS
+
+
+Business Findings:
+
+1. Top 10 sellers contribute 13.15% of total marketplace revenue.
+
+2. Revenue concentration among top sellers is relatively low.
+
+3. The marketplace appears to have a diversified seller ecosystem.
+
+4. No evidence suggests extreme dependency on a small number of sellers.
+
+5. Revenue generation is distributed across a broad seller base.
+
+Key Insight:
+
+The platform demonstrates healthy seller diversification,
+reducing operational and revenue risk associated with the loss
+of any individual seller.
+
+Business Implications:
+
+- Lower seller concentration risk.
+- Greater marketplace resilience.
+- Revenue generation is supported by a broad merchant network.
+
+*/
