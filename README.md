@@ -65,3 +65,59 @@ This project was designed to answer these questions through SQL analysis and int
 - Validate the Pareto Principle.
 - Analyze delivery performance across Brazilian states.
 - Build executive-level dashboards for business stakeholders.
+---
+
+# 📊 Interactive Dashboard
+
+The project includes four interactive Power BI dashboard pages, each designed to answer a different set of business questions.
+
+---
+
+## 📈 Executive Overview
+
+**Business Questions Answered**
+
+- How is the business performing overall?
+- What are the monthly revenue trends?
+- Which product categories generate the highest revenue?
+- How is revenue changing month-over-month?
+
+![Executive Overview](images/executive-overview.png)
+
+---
+
+## 🚚 Operational Insights
+
+**Business Questions Answered**
+
+- Which sellers deliver products the fastest?
+- Which sellers have the highest late delivery rates?
+- What is the average delivery performance across sellers?
+
+![Operational Insights](images/operational-insights.png)
+
+---
+
+## 👥 Customer Analytics
+
+**Business Questions Answered**
+
+- Which customer segments generate the highest revenue?
+- How much revenue is at risk?
+- Does the business follow the Pareto Principle?
+- Which customer groups should be targeted for retention?
+
+![Customer Analytics](images/customer-analytics.png)
+
+---
+
+## 🌎 State Analysis
+
+**Business Questions Answered**
+
+- Which states generate the highest revenue?
+- Which states place the most orders?
+- Which states experience the highest delivery delays?
+- Which regions require operational improvements?
+
+![State Analysis](images/state-analysis.png)
